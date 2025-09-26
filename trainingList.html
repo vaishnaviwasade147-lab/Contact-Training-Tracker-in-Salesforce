@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="Training List">
+        <template if:true={trainings.data}>
+            <template for:each={trainings.data} for:item="training">
+                <div key={training.Id} class="slds-box slds-m-around_small">
+                    <p><strong>{training.Course_Name__c}</strong> - {training.Status__c}</p>
+                    <lightning-button
+                        label="Mark as Completed"
+                        onclick={handleMarkCompleted}
+                        data-id={training.Id}
+                        class="slds-m-top_small">
+                    </lightning-button>
+                </div>
+            </template>
+        </template>
+    </lightning-card>
+</template>
