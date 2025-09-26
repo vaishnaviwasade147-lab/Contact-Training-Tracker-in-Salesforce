@@ -1,0 +1,63 @@
+#include <stdio.h>
+
+#define SIZE 100
+
+void display(int arr[], int n) {
+    printf("Array elements: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+void insert(int arr[], int *n, int element, int position) {
+    if (*n >= SIZE) {
+        printf("Insertion failed: Array is full.\n");
+        return;
+    }
+
+    if (position < 0 || position > *n) {
+        printf("Invalid position for insertion.\n");
+        return;
+    }
+
+    for (int i = *n; i > position; i--) {
+        arr[i] = arr[i - 1]; // Shift elements to the right
+    }
+    arr[position] = element;
+    (*n)++;
+    printf("Inserted %d at position %d.\n", element, position);
+}
+void delete(int arr[], int *n, int position) {
+    if (*n == 0) {
+        printf("Deletion failed: Array is empty.\n");
+        return;
+    }
+
+    if (position < 0 || position >= *n) {
+        printf("Invalid position for deletion.\n");
+        return;
+    }
+    int deleted = arr[position];
+
+    for (int i = position; i < *n - 1; i++) {
+        arr[i] = arr[i + 1]; // Shift elements to the left
+    }
+    (*n)--;
+    printf("Deleted element %d from position %d.\n", deleted, position);
+}
+int main() {
+    int arr[SIZE] = {10, 20, 30, 40, 50};
+    int n = 5;
+
+    printf("Initial Array:\n");
+    display(arr, n);
+
+    // Insertion
+    insert(arr, &n, 25, 2); // Insert 25 at index 2
+    display(arr, n);
+
+    // Deletion
+    delete(arr, &n, 4); // Delete element at index 4
+    display(arr, n);
+    return 0;
+}

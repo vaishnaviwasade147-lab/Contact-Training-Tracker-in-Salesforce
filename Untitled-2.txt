@@ -1,0 +1,7 @@
+#include<iostream>
+using namespace std;
+void calculate(int n,int arr,int r,int unit){
+    for(int i=0;i<n;i++)
+if()
+    
+}
